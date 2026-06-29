@@ -45,7 +45,9 @@ class snow:
         print(self.url)
 
     def updateRecord(self,table,id,record):
-        print(self.url)
+        url = f"{self.url}/api/now/table/{table}/{id}"
+        response = requests.patch(url, headers=self.headers, data=json.dumps(record))
+        return response.json()
 
     def deleteRecord(self,table,id):
         print(self.url)
