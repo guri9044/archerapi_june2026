@@ -26,3 +26,4 @@ for issue in snowIssueDataArray:
     snow.updateRecord(table='sn_grc_issue',id=issue['sys_id'],record=snowJSON)
     print('___________________________________________________')
     
+    
