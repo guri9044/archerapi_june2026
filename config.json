@@ -1,0 +1,17 @@
+{
+    "archer": {
+        "url": "https://archer-irm.com/Archer",
+        "username": "api.user",
+        "password": "Archer@123",
+        "instance": "t202603",
+        "domain": ""
+    },
+    "servicenow": {
+        "url": "https://dev384260.service-now.com",
+        "username": "admin",
+        "password": "kz22DRssE+@P",
+        "authType": "basic",
+        "oauth_Token": ""
+    },
+    "mapping": {}
+}
