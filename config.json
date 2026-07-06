@@ -13,5 +13,42 @@
         "authType": "basic",
         "oauth_Token": ""
     },
-    "mapping": {}
+    "mapping": {
+        "snowToArcher": {
+            "source": "sn_grc_issue",
+            "sourceFields": "issue_type,sys_id,short_description,description",
+            "targetLevelId": 62,
+            "mappings": [
+                {
+                    "snow": "short_description",
+                    "archerType": 1,
+                    "archer": 2670
+                },
+                {
+                    "snow": "description",
+                    "archer": 2265,
+                    "archerType": 1
+                },
+                {
+                    "snow": "sys_id",
+                    "archer": 28795,
+                    "archerType": 1
+                },
+                {
+                    "snow": "issue_type",
+                    "archer": 7068,
+                    "archerType": 4,
+                    "valueListMapping": {
+                        "7": "6198",
+                        "1": "6200",
+                        "13": "72345",
+                        "3": "6199",
+                        "4": "6199",
+                        "default": "6199"
+                    }
+                }
+            ]
+        },
+        "archerToSnow": {}
+    }
 }

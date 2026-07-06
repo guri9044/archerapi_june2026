@@ -2,9 +2,21 @@ import requests
 import json
 import requests
 import base64
+import logging
+import os
+import datetime
 
 class snow:
     def __init__(self):
+        if not os.path.exists("Logs"):
+            os.makedirs("Logs")
+        currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
+        fileName = os.path.join("Logs",f"ArcherServiceNowIntegration.ServiceNow.{currentDate}.log")
+        self.logger = logging.getLogger(__name__)
+        snowHandler = logging.FileHandler(fileName)
+        snowHandler.setLevel(logging.DEBUG)
+        snowHandler.setFormatter(logging.Formatter("%(asctime)s - [%(levelname)s] - %(message)s"))
+        self.logger.addHandler(snowHandler)
         with open('config.json','r')as f:
             config = json.load(f)
         self.url = config['servicenow']['url']
@@ -29,16 +41,18 @@ class snow:
         elif fields:
             url = url+"?sysparm_fields="+fields
         print("URL : ",url)
-        response = requests.get(url,headers=self.headers)
-        return response.json()['result']
+        response = requests.get(url, headers=self.headers)
+        if(response.status_code == 200):
+            recordArray = response.json()['result']
+            self.logger.info(f"Successfully retrieved {len(recordArray)} records from {table}")
+            return recordArray
+        else:
+            self.logger.error(f"Failed to retrieve records from {table} : {response.status_code}")
+            return None
         
     def getRecord(self,table,id):
         url = self.url + "/api/now/table/"+table+""+id
-        headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=self.headers)
         return response.json()
     
     def createRecord(self,table,record):
