@@ -1,4 +1,5 @@
 {
+    "encrypt": false,
     "archer": {
         "url": "https://archer-irm.com/Archer",
         "username": "api.user",
@@ -49,6 +50,39 @@
                 }
             ]
         },
-        "archerToSnow": {}
+        "archerToSnow": {
+            "reportIdOrGuid": "12496",
+            "target": "sn_grc_task",
+            "foreignKey": 28812,
+            "archerLevelId": 96,
+            "mappings": [
+                {
+                    "snow": "issue",
+                    "archerType": 1,
+                    "archer": 28795
+                },
+                {
+                    "snow": "description",
+                    "archerType": 1,
+                    "archer": 4840
+                },
+                {
+                    "snow": "short_description",
+                    "archerType": 1,
+                    "archer": 4846
+                },
+                {
+                    "snow": "priority",
+                    "archer": 7899,
+                    "archerType": 4,
+                    "valueListMapping": {
+                        "728": "2",
+                        "729": "3",
+                        "730": "4",
+                        "default": "5"
+                    }
+                }
+            ]
+        }
     }
 }
